@@ -29,9 +29,8 @@ namespace Sabotage {
             Console.WriteLine("Incoming connection from " + client.Client.RemoteEndPoint);
 
             socket.BeginAcceptTcpClient(new AsyncCallback(ClientConnected), null);
-
             for (int i = 1; i <= MaxPlayers; i++) {
-                if (clients[i].tcp.socket == null) {
+                if (clients[i].tcp.socket  == null) {
                     clients[i].tcp.Connect(client);
                     return;
                 }
@@ -42,7 +41,7 @@ namespace Sabotage {
 
         private static void InitializeServerData() {
             for (int i = 1; i <= MaxPlayers; i++) {
-                clients.Add(i, new Client());
+                clients.Add(i, new Client(i));
             }
         }
     }

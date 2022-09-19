@@ -8,6 +8,11 @@ namespace Sabotage {
         public int playerID;
         public TCP tcp;
 
+        public Client(int clientID) {
+            playerID = clientID;
+            tcp = new TCP(playerID);
+        }
+
         public class TCP {
             public TcpClient socket;
             private int id;
