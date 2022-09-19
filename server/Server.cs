@@ -18,6 +18,7 @@ namespace Sabotage {
 
             InitializeServerData();
 
+            // Prepare and open the server to accept clients
             socket = new TcpListener(IPAddress.Any, port);
             socket.Start();
             socket.BeginAcceptTcpClient(new AsyncCallback(ClientConnected), null);
@@ -29,6 +30,7 @@ namespace Sabotage {
             Console.WriteLine("Incoming connection from " + client.Client.RemoteEndPoint);
 
             socket.BeginAcceptTcpClient(new AsyncCallback(ClientConnected), null);
+            // Look for an empty slot for a player
             for (int i = 1; i <= MaxPlayers; i++) {
                 if (clients[i].tcp.socket  == null) {
                     clients[i].tcp.Connect(client);
@@ -39,6 +41,7 @@ namespace Sabotage {
             Console.WriteLine("SERVER IS FULL");
         }
 
+        // This function instantiates "slots" in the server for players to join
         private static void InitializeServerData() {
             for (int i = 1; i <= MaxPlayers; i++) {
                 clients.Add(i, new Client(i));

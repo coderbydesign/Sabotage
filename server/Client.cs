@@ -33,8 +33,20 @@ namespace Sabotage {
                 receiveBuffer = new byte[dataBufferSize];
 
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
+                ServerSend.Welcome(id, "Welome to the Server");
             }
 
+            public void SendData(Packet packet) {
+                try {
+                    if(socket != null) {
+                        stream.BeginWrite(packet.ToArray(), 0, packet.Length(), null, null);
+                    }
+                } catch (Exception e) {
+                    Console.WriteLine("Error sending packet to player " + id + " via TCP: " + e);
+                }
+            }
+
+            // This function is responsible for reading data sent to client
             private void ReceiveCallback(IAsyncResult _result) {
                 try {
                     int byteLength = stream.EndRead(_result);
@@ -43,10 +55,10 @@ namespace Sabotage {
                     }
                     byte[] data = new byte[byteLength];
                     Array.Copy(receiveBuffer, data, byteLength);
-
+                    // Keep reading until we run out of data
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
                 } catch (Exception e) {
-                    Console.WriteLine("Error receiving TCP");
+                    Console.WriteLine("Error receiving TCP: " + e.ToString());
                 }
             }
         }
