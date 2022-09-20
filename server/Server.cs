@@ -49,7 +49,7 @@ namespace Sabotage {
                 clients.Add(i, new Client(i));
             }
 
-            // Add new instruction pairs for each type of packet we expect to send
+            // Add new instruction pairs for each type of packet we expect to receive
             packetHandlers = new Dictionary<int, PacketHandler>() {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived }
             };
