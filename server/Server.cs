@@ -9,6 +9,8 @@ namespace Sabotage {
         private static int port = 25565;
 
         public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
+        public delegate void PacketHandler(int fromClient, Packet packet);
+        public static Dictionary<int, PacketHandler> packetHandlers;
 
         public static void Start(int _MaxPlayers, int _port) {
             MaxPlayers = _MaxPlayers;
@@ -46,6 +48,12 @@ namespace Sabotage {
             for (int i = 1; i <= MaxPlayers; i++) {
                 clients.Add(i, new Client(i));
             }
+
+            packetHandlers = new Dictionary<int, PacketHandler>() {
+                { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived }
+            };
+
+            Console.WriteLine("Initialized Packets.");
         }
     }
 }
