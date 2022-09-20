@@ -60,6 +60,16 @@ namespace Sabotage {
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
             }
 
+            public void SendData(Packet packet) {
+                try {
+                    if(socket != null) {
+                        stream.BeginWrite(packet.ToArray(), 0, packet.Length(), null, null);
+                    }
+                } catch (Exception e) {
+                    Console.WriteLine("Error sending data: " + e);
+                }
+            }
+
             // This function is responsible for reading data sent to client
             private void ReceiveCallback(IAsyncResult _result) {
                 Console.WriteLine("Received data from TCP");

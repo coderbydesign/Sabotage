@@ -8,6 +8,7 @@ namespace Sabotage {
 
             Console.WriteLine("Message received from server: " + message);
             Client.instance.myID = myID;
+            ClientSend.welcomeReceived();
         }
     }
 }
