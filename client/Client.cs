@@ -12,6 +12,7 @@ namespace Sabotage {
         public TCP tcp;
         private delegate void PacketHandler(Packet packet);
         private static Dictionary<int, PacketHandler> packetHandlers;
+        private bool isConnected = false;
 
         public Client() {
             if (instance == null) {
@@ -26,6 +27,7 @@ namespace Sabotage {
 
         public void ConnectToServer() {
             InitializeClientData();
+            isConnected = true;
             tcp.Connect();
         }
 
@@ -46,7 +48,6 @@ namespace Sabotage {
             }
 
             private void ConnectCallback(IAsyncResult result) {
-                Console.WriteLine("Connected callback");
                 socket.EndConnect(result);
 
                 if(!socket.Connected) {
@@ -76,6 +77,7 @@ namespace Sabotage {
                 try {
                     int byteLength = stream.EndRead(_result);
                     if(byteLength <= 0) {
+                        instance.Disconnect();
                         return;
                     }
                     byte[] data = new byte[byteLength];
@@ -86,6 +88,7 @@ namespace Sabotage {
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
                 } catch (Exception e) {
                     Console.WriteLine("Error receiving TCP: " + e.ToString());
+                    Disconnect();
                 }
             }
 
@@ -131,6 +134,15 @@ namespace Sabotage {
 
                 return false;
             }
+
+            private void Disconnect() {
+                instance.Disconnect();
+
+                stream = null;
+                receivedData = null;
+                receiveBuffer = null;
+                socket = null;
+            }
         }
 
         private void InitializeClientData() {
@@ -139,6 +151,14 @@ namespace Sabotage {
             };
 
             Console.WriteLine("Initialized packets");
+        }
+
+        private void Disconnect() {
+            if (isConnected){
+                isConnected = false;
+                tcp.socket.Close();
+                Console.WriteLine("Disconnected from server");
+            }
         }
     }
 }

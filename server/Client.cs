@@ -61,6 +61,7 @@ namespace Sabotage {
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
                 } catch (Exception e) {
                     Console.WriteLine("Error receiving TCP: " + e.ToString());
+                    Server.clients[id].Disconnect();
                 }
             }
             
@@ -75,6 +76,7 @@ namespace Sabotage {
 
                     // if we have an empty packet, tell the received data it can now reset
                     if(packetLength <= 0) {
+                        Server.clients[id].Disconnect();
                         return true;
                     }
                 }
@@ -106,6 +108,20 @@ namespace Sabotage {
 
                 return false;
             }
+
+            public void Disconnect() {
+                socket.Close();
+                stream = null;
+                receivedData = null;
+                receiveBuffer = null;
+                socket = null;
+            }
+        }
+
+        private void Disconnect() {
+            Console.WriteLine(tcp.socket.Client.RemoteEndPoint + " has disconnected");
+
+            tcp.Disconnect();
         }
     }
 }
