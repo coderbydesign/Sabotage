@@ -6,7 +6,7 @@ namespace Sabotage {
             packet.WriteLength();
             Client.instance.tcp.SendData(packet);
         }
-
+        // Define a function for each type of instruction we expect to send
         public static void welcomeReceived() {
             using (Packet packet = new Packet((int)ClientPackets.welcomeReceived)) {
                 packet.Write(Client.instance.myID);

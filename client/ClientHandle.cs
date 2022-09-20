@@ -2,6 +2,7 @@ using System;
 
 namespace Sabotage {
     public class ClentHandle {
+        // Define a function for each instruction we expect to receive
         public static void Welcome(Packet packet) {
             string message = packet.ReadString();
             int myID = packet.ReadInt();

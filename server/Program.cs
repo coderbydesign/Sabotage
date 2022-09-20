@@ -14,6 +14,7 @@ namespace Sabotage {
             Server.Start(2, 25565);
         }
 
+        // Execute the main server thread that polls for communications of players
         private static void MainThread() {
             Console.WriteLine("Main thread started at " + Constants.TICKS_PER_SEC + " ticks per second");
 

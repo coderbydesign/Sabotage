@@ -10,12 +10,16 @@ namespace Sabotage
     /// <summary>Sent from server to client.</summary>
     public enum ServerPackets
     {
+        // these are ID's for packet instructions
+        // create a new one for each packet configuration
         welcome = 1
     }
 
     /// <summary>Sent from client to server.</summary>
     public enum ClientPackets
     {
+        // these are ID's for packet instructions
+        // create a new one for each packet configuration
         welcomeReceived = 1
     }
 

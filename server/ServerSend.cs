@@ -32,6 +32,7 @@ namespace Sabotage {
             }
         }
 
+        // Define a new function for each type of instruction we expect to send
         public static void Welcome(int toClient, string message) {
             // Packet class is disposable, this disposes it automatically
             // welcome is the packet ID
