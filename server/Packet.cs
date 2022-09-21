@@ -10,7 +10,8 @@ namespace Sabotage
     /// <summary>Sent from server to client.</summary>
     public enum ServerPackets
     {
-        welcome = 1
+        welcome = 1,
+        serverFull = 2,
     }
 
     /// <summary>Sent from client to server.</summary>

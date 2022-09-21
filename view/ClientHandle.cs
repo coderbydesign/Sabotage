@@ -11,5 +11,9 @@ namespace Sabotage {
             Client.instance.myID = myID;
             ClientSend.welcomeReceived();
         }
+
+        public static void ServerFull(Packet packet) {
+            Console.WriteLine("The server is now full");
+        }
     }
 }
