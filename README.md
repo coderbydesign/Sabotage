@@ -1,2 +1,3 @@
-# Sabotage
-Ruin your opponents Services by submitting bugs to their repos!
+# Sabotage, the game
+Ruin your opponents' services by submitting "bugs" to their repos! An exploration
+in multiplayer gaming.
