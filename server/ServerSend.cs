@@ -43,6 +43,7 @@ namespace Sabotage {
             }
         }
 
+
         public static void Fire(int toClient, int x, int y) {
             using (Packet packet = new Packet((int)ServerPackets.fire)) {
                 packet.Write(toClient);
@@ -50,6 +51,12 @@ namespace Sabotage {
                 packet.Write(y);
 
                 SendTCPData(toClient, packet);
+            }
+        }
+
+        public static void GameReady() {
+            using (Packet packet = new Packet((int)ServerPackets.gameReady)) {
+                SendTCPDataToAll(packet);
             }
         }
     }

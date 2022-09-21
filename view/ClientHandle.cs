@@ -2,9 +2,11 @@ using System;
 using Sabotage.Views;
 
 namespace Sabotage {
-    public class ClentHandle {
+    public class ClientHandle
+    {
         // Define a function for each instruction we expect to receive
-        public static void Welcome(Packet packet) {
+        public static void Welcome(Packet packet)
+        {
             string message = packet.ReadString();
             int myID = packet.ReadInt();
 
@@ -13,8 +15,9 @@ namespace Sabotage {
             ClientSend.welcomeReceived();
         }
 
-        public static void ServerFull(Packet packet) {
-            Console.WriteLine("The server is now full");
+        public static void GameReady(Packet packet)
+        {
+            Console.WriteLine("The game is now ready!");
         }
 
         public static void ReceiveFire(Packet packet) {
