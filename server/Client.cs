@@ -47,7 +47,7 @@ namespace Sabotage {
                 }
             }
 
-            // This function is responsible for reading data sent to client
+            // This function is responsible for reading data read from client
             private void ReceiveCallback(IAsyncResult _result) {
                 try {
                     int byteLength = stream.EndRead(_result);
@@ -115,7 +115,7 @@ namespace Sabotage {
                 receivedData = null;
                 receiveBuffer = null;
                 socket = null;
-            }
+            }   
         }
 
         private void Disconnect() {

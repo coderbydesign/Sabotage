@@ -12,7 +12,8 @@ namespace Sabotage
     {
         // these are ID's for packet instructions
         // create a new one for each packet configuration
-        welcome = 1
+        welcome = 1,
+        serverFull = 2
     }
 
     /// <summary>Sent from client to server.</summary>
