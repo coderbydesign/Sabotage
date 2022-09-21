@@ -44,7 +44,8 @@ namespace Sabotage.ViewModels
         public void StartSabotage()
         {
             StartButtonText = "CONNECTING...";
-            Thread.Sleep(2000);
+            Client client = new Client();
+            client.ConnectToServer();
             Connected = true;
         }
     }
