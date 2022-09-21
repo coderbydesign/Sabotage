@@ -1,0 +1,178 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Sabotage.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Sabotage.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Sabotage"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.15" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+        <Panel Margin="50">
+            <Button Cursor="Hand" Classes="MainButton" IsVisible="{Binding !Connected}" Command="{Binding StartSabotage}" Content="{Binding StartButtonText}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+        </Panel>
+        <Grid ShowGridLines="True" Height="500" Width="500">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Col 1 -->
+            <Button Grid.Column="0" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="0" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            
+            <!-- Col 2 -->
+            <Button Grid.Column="1" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="1" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+
+            <!-- Col 3 -->
+            <Button Grid.Column="2" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="2" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />            
+            
+            <!-- Col 4 -->
+            <Button Grid.Column="3" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="3" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            
+            <!-- Col 5 -->
+            <Button Grid.Column="4" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="4" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            
+            <!-- Col 6 -->
+            <Button Grid.Column="5" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="5" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            
+            <!-- Col 7 -->
+            <Button Grid.Column="6" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="6" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+
+            <!-- Col 8 -->
+            <Button Grid.Column="7" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="7" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            
+            <!-- Col 9 -->
+            <Button Grid.Column="8" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="8" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            
+            <!-- Col 10 -->
+            <Button Grid.Column="9" Grid.Row="0" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="1" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="2" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="3" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="4" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="5" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="6" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="7" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="8" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+            <Button Grid.Column="9" Grid.Row="9" Click="PlayTurn" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" />
+        </Grid>
+    </Panel>
+</Window>
