@@ -51,7 +51,8 @@ namespace Sabotage {
 
             // Add new instruction pairs for each type of packet we expect to receive
             packetHandlers = new Dictionary<int, PacketHandler>() {
-                { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived }
+                { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
+                {(int)ClientPackets.fire, ServerHandle.FireReceived}
             };
 
             Console.WriteLine("Initialized Packets.");

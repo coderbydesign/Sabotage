@@ -12,12 +12,14 @@ namespace Sabotage
     {
         welcome = 1,
         serverFull = 2,
+        fire = 3,
     }
 
     /// <summary>Sent from client to server.</summary>
     public enum ClientPackets
     {
-        welcomeReceived = 1
+        welcomeReceived = 1,
+        fire = 3
     }
 
     public class Packet : IDisposable
