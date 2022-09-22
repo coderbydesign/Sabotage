@@ -7,9 +7,13 @@ namespace Sabotage {
     public class GameLogic {
         private const int boardSize = 10;
         public static Tile[,] board = new Tile[boardSize, boardSize];
-        public static int xHit;
-        public static int yHit;
-        public static bool isOccupiedHit = false;
+        public static int xReceived;
+        public static int yReceived;
+        public static bool isOccupiedReceived = false;
+
+        public static int xTarget;
+        public static int yTarget;
+        public static bool isOccupiedTarget;
 
         public static void InitializeBoard() {
             for (int x = 0; x < boardSize; x++) {
@@ -24,12 +28,20 @@ namespace Sabotage {
         public static void ReceiveFire(int x, int y) {
             
             board[x, y].isHit = true;
-            isOccupiedHit = board[x, y].isOccupied;
-            xHit = x;
-            yHit = y;
+            isOccupiedReceived = board[x, y].isOccupied;
+            xReceived = x;
+            yReceived = y;
             Action receiveFireUI = delegate() {MainWindow.ReceiveFire();};
             Dispatcher.UIThread.InvokeAsync(receiveFireUI);
-            ClientSend.ConfirmHit(xHit, yHit, isOccupiedHit);
+            ClientSend.ConfirmHit(xReceived, yReceived, isOccupiedReceived);
+        }
+
+        public static void TargetHit(int x, int y, bool hitShip) {
+            xTarget = x;
+            yTarget = y;
+            isOccupiedTarget = hitShip;
+            Action targetHitUpdateUI = delegate() {MainWindow.UpdateTarget();};
+            Dispatcher.UIThread.InvokeAsync(targetHitUpdateUI);
         }
 
         public class Tile {

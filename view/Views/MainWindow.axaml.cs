@@ -42,10 +42,23 @@ namespace Sabotage.Views
         }
 
         public static void ReceiveFire() {
-            int x = GameLogic.xHit;
-            int y = GameLogic.yHit;
-            Console.WriteLine($"{x}, {y}");
-            buttons[(x*10) + (y*1)].Background = new SolidColorBrush(new Color(255, 255, 0, 0));
+            int x = GameLogic.xReceived;
+            int y = GameLogic.yReceived;
+            Console.WriteLine($"({x}, {y}) has been hit by the enemy!");
+        }
+
+        public static void UpdateTarget() {
+            int x = GameLogic.xTarget;
+            int y = GameLogic.yTarget;
+            bool hitShip = GameLogic.isOccupiedTarget;
+
+            Console.WriteLine($"({x}, {y}) was targeted. Ship Present? {hitShip}");
+
+            if (hitShip) {
+                buttons[(x*10) + (y*1)].Background = new SolidColorBrush(new Color(255, 255, 0, 0));
+            } else {
+                buttons[(x*10) + (y*1)].Background = new SolidColorBrush(new Color(255, 0, 0, 255));
+            }
         }
     }
 }

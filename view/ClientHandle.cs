@@ -49,6 +49,8 @@ namespace Sabotage {
             } else {
                 Console.WriteLine($"We missed!");
             }
+
+            GameLogic.TargetHit(x, y, hitShip);
         }
     }
 }
