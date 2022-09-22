@@ -36,6 +36,7 @@ namespace Sabotage.ViewModels
             StartButtonText = "CONNECTING...";
             Client client = new Client();
             client.ConnectToServer();
+            GameLogic.InitializeBoard();
         }
     }
 }

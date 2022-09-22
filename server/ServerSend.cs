@@ -59,5 +59,16 @@ namespace Sabotage {
                 SendTCPDataToAll(packet);
             }
         }
+
+        public static void ConfirmHit(int toClient, int x, int y, bool hitShip) {
+            using (Packet packet = new Packet((int)ServerPackets.confirmHit)) {
+                packet.Write(toClient);
+                packet.Write(x);
+                packet.Write(y);
+                packet.Write(hitShip);
+
+                SendTCPData(toClient, packet);
+            }
+        }
     }
 }

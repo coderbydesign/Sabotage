@@ -37,5 +37,18 @@ namespace Sabotage {
             Console.WriteLine($"Attack from Player {fromClient} add coordinates ({x}, {y})!");
             GameLogic.ReceiveFire(x,y);   
         }
+
+        public static void ConfirmHit(Packet packet) {
+            int fromClient = packet.ReadInt();
+            int x = packet.ReadInt();
+            int y = packet.ReadInt();
+            bool hitShip = packet.ReadBool();
+
+            if (hitShip) {
+                Console.WriteLine($"We hit a service!");
+            } else {
+                Console.WriteLine($"We missed!");
+            }
+        }
     }
 }

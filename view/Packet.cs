@@ -14,7 +14,8 @@ namespace Sabotage
         // create a new one for each packet configuration
         welcome = 1,
         gameReady = 2,
-        fire = 3
+        fire = 3,
+        confirmHit = 4
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -23,7 +24,8 @@ namespace Sabotage
         // these are ID's for packet instructions
         // create a new one for each packet configuration
         welcomeReceived = 1,
-        fire = 3
+        fire = 3,
+        confirmHit = 4
     }
 
     public class Packet : IDisposable
