@@ -26,7 +26,7 @@
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
         <Panel Margin="50">
-            <Button Cursor="Hand" Classes="MainButton" IsVisible="{Binding !Connected}" Command="{Binding StartSabotage}" Content="{Binding StartButtonText}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+            <Button Cursor="Hand" x:Name="startButton" Classes="MainButton" Command="{Binding StartSabotage}" Content="{Binding StartButtonText}" HorizontalAlignment="Right" VerticalAlignment="Top" />
         </Panel>
         <Grid ShowGridLines="True" Height="500" Width="500" x:Name="grid">
             <Grid.RowDefinitions>

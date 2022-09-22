@@ -1,5 +1,11 @@
 using System;
+using System.ComponentModel;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Presenters;
 using Sabotage.Views;
+using Avalonia.Threading;
 
 namespace Sabotage {
     public class ClientHandle
@@ -13,6 +19,9 @@ namespace Sabotage {
             Console.WriteLine("Message received from server: " + message);
             Client.instance.myID = myID;
             ClientSend.welcomeReceived();
+            
+            Action connected = delegate() { MainWindow.Connected(); };
+            Dispatcher.UIThread.InvokeAsync(connected);
         }
 
         public static void GameReady(Packet packet)
