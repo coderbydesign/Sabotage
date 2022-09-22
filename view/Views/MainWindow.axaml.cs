@@ -15,12 +15,20 @@ namespace Sabotage.Views
     {
         public static List<Button> buttons = new List<Button>();
         private static Button startBtn;
+        private static TextBlock oppMsg;
+        private static Grid board;
+        private static Panel splashHdr;
+        private static Panel gamePlayHdr;
         
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
             startBtn = this.GetControl<Button>("startButton");
+            oppMsg = this.GetControl<TextBlock>("opponentMessage");
+            board = this.GetControl<Grid>("grid");
+            splashHdr = this.GetControl<Panel>("splashHeader");
+            gamePlayHdr = this.GetControl<Panel>("gamePlayHeader");
 
             foreach(Button button in this.GetControl<Grid>("grid").GetVisualChildren()) {
                 buttons.Add(button);
@@ -39,6 +47,16 @@ namespace Sabotage.Views
 
         public static void Connected() {
             startBtn.IsVisible = false;
+            oppMsg.IsVisible = true;
+        }
+
+        public static void GameReady() {
+            // we may be able to refactor this all to use
+            // styles which set visiblity, and add/remove visible styles
+            oppMsg.IsVisible = false;
+            board.IsVisible = true;
+            splashHdr.IsVisible = false;
+            gamePlayHdr.IsVisible = true;
         }
 
         public static void ReceiveFire() {

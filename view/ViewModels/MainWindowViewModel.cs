@@ -16,7 +16,7 @@ namespace Sabotage.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private string _startButtonText = "START GAME!";
+        private string _startButtonText = "Let's Play SABOTAGE!";
 
         public string StartButtonText
         {
@@ -33,7 +33,7 @@ namespace Sabotage.ViewModels
         // Start the game
         public void StartSabotage()
         {
-            StartButtonText = "CONNECTING...";
+            StartButtonText = "connecting...";
             Client client = new Client();
             client.ConnectToServer();
         }

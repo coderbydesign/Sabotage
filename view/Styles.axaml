@@ -20,12 +20,12 @@
         <Setter Property="Background" Value="#8B8B8B"/>
     </Style>
     
-    <Style Selector="Button.MainButton">
+    <Style Selector="Button.StartButton">
         <Setter Property="Background" Value="#BE0000"></Setter>
         <Setter Property="Foreground" Value="#F3F3F3"></Setter>
     </Style>
 
-    <Style Selector="Button.MainButton:pointerover /template/ ContentPresenter">
+    <Style Selector="Button.StartButton:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="#8F0000"></Setter>
     </Style>
 </Styles>
