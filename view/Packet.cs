@@ -13,7 +13,7 @@ namespace Sabotage
         // these are ID's for packet instructions
         // create a new one for each packet configuration
         welcome = 1,
-        serverFull = 2,
+        gameReady = 2,
         fire = 3
     }
 

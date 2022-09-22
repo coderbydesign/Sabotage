@@ -36,6 +36,9 @@ namespace Sabotage {
             for (int i = 1; i <= MaxPlayers; i++) {
                 if (clients[i].tcp.socket  == null) {
                     clients[i].tcp.Connect(client);
+                    if (i == MaxPlayers) {
+                        ServerSend.GameReady();
+                    }
                     return;
                 }
             }

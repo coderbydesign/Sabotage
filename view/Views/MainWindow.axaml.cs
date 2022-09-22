@@ -14,11 +14,13 @@ namespace Sabotage.Views
     public partial class MainWindow : Window
     {
         public static List<Button> buttons = new List<Button>();
-
+        private static Button startBtn;
+        
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+            startBtn = this.GetControl<Button>("startButton");
 
             foreach(Button button in this.GetControl<Grid>("grid").GetVisualChildren()) {
                 buttons.Add(button);
@@ -33,12 +35,10 @@ namespace Sabotage.Views
             int yCoord = ((int)sourceButton.Bounds.Y) / ((int)sourceButton.Bounds.Height);
 
             ClientSend.Fire(xCoord, yCoord);
-            // foreach(PropertyDescriptor descriptor in TypeDescriptor.GetProperties(sourceButton))
-            // {
-            //     string name = descriptor.Name;
-            //     object value = descriptor.GetValue(sender);
-            //     Console.WriteLine("{0}={1}", name, value);
-            // }
+        }
+
+        public static void Connected() {
+            startBtn.IsVisible = false;
         }
 
         public static void ReceiveFire() {

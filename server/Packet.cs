@@ -11,7 +11,7 @@ namespace Sabotage
     public enum ServerPackets
     {
         welcome = 1,
-        serverFull = 2,
+        gameReady = 2,
         fire = 3,
     }
 

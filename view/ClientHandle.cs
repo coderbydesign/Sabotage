@@ -1,20 +1,32 @@
 using System;
+using System.ComponentModel;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Presenters;
 using Sabotage.Views;
+using Avalonia.Threading;
 
 namespace Sabotage {
-    public class ClentHandle {
+    public class ClientHandle
+    {
         // Define a function for each instruction we expect to receive
-        public static void Welcome(Packet packet) {
+        public static void Welcome(Packet packet)
+        {
             string message = packet.ReadString();
             int myID = packet.ReadInt();
 
             Console.WriteLine("Message received from server: " + message);
             Client.instance.myID = myID;
             ClientSend.welcomeReceived();
+            
+            Action connected = delegate() { MainWindow.Connected(); };
+            Dispatcher.UIThread.InvokeAsync(connected);
         }
 
-        public static void ServerFull(Packet packet) {
-            Console.WriteLine("The server is now full");
+        public static void GameReady(Packet packet)
+        {
+            Console.WriteLine("The game is now ready!");
         }
 
         public static void ReceiveFire(Packet packet) {

@@ -148,9 +148,9 @@ namespace Sabotage {
 
         private void InitializeClientData() {
             packetHandlers = new Dictionary<int, PacketHandler>() {
-                {(int)ServerPackets.welcome, ClentHandle.Welcome},
-                {(int)ServerPackets.serverFull, ClentHandle.ServerFull},
-                {(int)ServerPackets.fire, ClentHandle.ReceiveFire}
+                {(int)ServerPackets.welcome, ClientHandle.Welcome},
+                {(int)ServerPackets.gameReady, ClientHandle.GameReady},
+                {(int)ServerPackets.fire, ClientHandle.ReceiveFire}
             };
 
             Console.WriteLine("Initialized packets");
