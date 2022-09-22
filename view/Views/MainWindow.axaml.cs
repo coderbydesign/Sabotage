@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.VisualTree;
@@ -69,13 +71,15 @@ namespace Sabotage.Views
             int x = GameLogic.xTarget;
             int y = GameLogic.yTarget;
             bool hitShip = GameLogic.isOccupiedTarget;
+            Button btn = buttons[(x * 10) + (y * 1)];
+            PathIcon hitIcon = btn.GetLogicalChildren().OfType<PathIcon>().FirstOrDefault(i => i.Classes.Contains("hitIcon"));
 
             Console.WriteLine($"({x}, {y}) was targeted. Ship Present? {hitShip}");
-
             if (hitShip) {
-                buttons[(x*10) + (y*1)].Background = new SolidColorBrush(new Color(255, 255, 0, 0));
+                hitIcon.IsVisible = true;
+                btn.Background = new SolidColorBrush(new Color(255, 190, 0, 0));
             } else {
-                buttons[(x*10) + (y*1)].Background = new SolidColorBrush(new Color(255, 0, 0, 255));
+                btn.Background = new SolidColorBrush(new Color(255, 39, 87, 154));
             }
         }
     }
