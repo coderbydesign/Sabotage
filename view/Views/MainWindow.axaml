@@ -1,9 +1,11 @@
 <Window xmlns="https://github.com/avaloniaui"
+        FontFamily="/Assets/Fonts/BasicallyAMono-Light.ttf#"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:Sabotage.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="550" d:DesignHeight="600"
+        Width="550" Height="650"
         x:Class="Sabotage.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sabotage"
@@ -25,10 +27,19 @@
                     MaterialOpacity="0.15" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
-        <Panel Margin="50">
-            <Button Cursor="Hand" x:Name="startButton" Classes="MainButton" Command="{Binding StartSabotage}" Content="{Binding StartButtonText}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+        <Panel Margin="25">
+            <Panel x:Name="gamePlayHeader" IsVisible="False">
+                <Image Source="/Assets/Images/sabotage.png" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            </Panel>
+            <Panel x:Name="splashHeader" IsVisible="True" Margin="0, 0, 0, 50">
+                <Image Source="/Assets/Images/sabotage.png" Width="200" HorizontalAlignment="Center" />    
+            </Panel>
+            <Panel Margin="0, 50, 0, 0">
+                <Button Cursor="Hand" x:Name="startButton" Classes="StartButton" Command="{Binding StartSabotage}" Content="{Binding StartButtonText}" HorizontalContentAlignment="Center" HorizontalAlignment="Center"  />
+                <TextBlock x:Name="opponentMessage" IsVisible="False" HorizontalAlignment="Center" VerticalAlignment="Center">Awaiting opponent...</TextBlock>
+            </Panel>
         </Panel>
-        <Grid ShowGridLines="True" Height="500" Width="500" x:Name="grid">
+        <Grid IsVisible="False" VerticalAlignment="Bottom" Margin="0,0,0,25" ShowGridLines="True" Height="500" Width="500" x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>

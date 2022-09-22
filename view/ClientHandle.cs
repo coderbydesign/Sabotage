@@ -27,6 +27,8 @@ namespace Sabotage {
         public static void GameReady(Packet packet)
         {
             Console.WriteLine("The game is now ready!");
+            Action gameReady = delegate() { MainWindow.GameReady(); };
+            Dispatcher.UIThread.InvokeAsync(gameReady);
         }
 
         public static void ReceiveFire(Packet packet) {
