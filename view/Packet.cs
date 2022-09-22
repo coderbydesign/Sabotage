@@ -13,7 +13,8 @@ namespace Sabotage
         // these are ID's for packet instructions
         // create a new one for each packet configuration
         welcome = 1,
-        serverFull = 2
+        serverFull = 2,
+        fire = 3
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -21,7 +22,8 @@ namespace Sabotage
     {
         // these are ID's for packet instructions
         // create a new one for each packet configuration
-        welcomeReceived = 1
+        welcomeReceived = 1,
+        fire = 3
     }
 
     public class Packet : IDisposable

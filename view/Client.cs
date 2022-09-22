@@ -149,7 +149,8 @@ namespace Sabotage {
         private void InitializeClientData() {
             packetHandlers = new Dictionary<int, PacketHandler>() {
                 {(int)ServerPackets.welcome, ClentHandle.Welcome},
-                {(int)ServerPackets.serverFull, ClentHandle.ServerFull}
+                {(int)ServerPackets.serverFull, ClentHandle.ServerFull},
+                {(int)ServerPackets.fire, ClentHandle.ReceiveFire}
             };
 
             Console.WriteLine("Initialized packets");

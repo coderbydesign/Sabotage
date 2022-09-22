@@ -42,5 +42,15 @@ namespace Sabotage {
                 SendTCPData(toClient, packet);
             }
         }
+
+        public static void Fire(int toClient, int x, int y) {
+            using (Packet packet = new Packet((int)ServerPackets.fire)) {
+                packet.Write(toClient);
+                packet.Write(x);
+                packet.Write(y);
+
+                SendTCPData(toClient, packet);
+            }
+        }
     }
 }

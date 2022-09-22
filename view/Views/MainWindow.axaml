@@ -28,7 +28,7 @@
         <Panel Margin="50">
             <Button Cursor="Hand" Classes="MainButton" IsVisible="{Binding !Connected}" Command="{Binding StartSabotage}" Content="{Binding StartButtonText}" HorizontalAlignment="Right" VerticalAlignment="Top" />
         </Panel>
-        <Grid ShowGridLines="True" Height="500" Width="500">
+        <Grid ShowGridLines="True" Height="500" Width="500" x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
