@@ -25,5 +25,16 @@ namespace Sabotage {
                 SendTCPData(packet);
             }
         }
+
+        public static void ConfirmHit(int x, int y, bool hitShip) {
+            using (Packet packet = new Packet((int)ClientPackets.confirmHit)) {
+                packet.Write(Client.instance.myID);
+                packet.Write(x);
+                packet.Write(y);
+                packet.Write(hitShip);
+
+                SendTCPData(packet);
+            }
+        }
     }
 }

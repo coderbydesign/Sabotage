@@ -27,5 +27,23 @@ namespace Sabotage {
 
             ServerSend.Fire(otherPlayer, x, y);
         }
+
+        public static void ConfirmHit(int fromClient, Packet packet) {
+            int clientID = packet.ReadInt();
+            int x = packet.ReadInt();
+            int y = packet.ReadInt();
+            bool confirmHit = packet.ReadBool();    
+
+            if (confirmHit) {
+                Console.WriteLine($"Player {clientID} hit a service!");
+            } else {
+                Console.WriteLine($"Player {clientID} missed!");
+            }
+            
+            int otherPlayer;
+            if (clientID == 1) otherPlayer = 2;
+            else otherPlayer = 1;
+            ServerSend.ConfirmHit(otherPlayer, x, y, confirmHit);
+        }
     }
 }

@@ -13,13 +13,15 @@ namespace Sabotage
         welcome = 1,
         gameReady = 2,
         fire = 3,
+        confirmHit = 4
     }
 
     /// <summary>Sent from client to server.</summary>
     public enum ClientPackets
     {
         welcomeReceived = 1,
-        fire = 3
+        fire = 3,
+        confirmHit = 4
     }
 
     public class Packet : IDisposable
