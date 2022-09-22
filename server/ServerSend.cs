@@ -70,5 +70,13 @@ namespace Sabotage {
                 SendTCPData(toClient, packet);
             }
         }
+
+        public static void ConfirmServiceSunk(int toClient, string serviceName) {
+            using (Packet packet = new Packet((int)ServerPackets.serviceSunk)) {
+                packet.Write(toClient);
+                packet.Write(serviceName);
+                SendTCPData(toClient, packet);
+            }
+        }
     }
 }

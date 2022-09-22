@@ -27,6 +27,7 @@ namespace Sabotage {
             PlaceServices();
         }
 
+        // They attacked us
         public static void ReceiveFire(int x, int y) {
             Tile target = board[x, y];
             target.isHit = true;
@@ -45,6 +46,7 @@ namespace Sabotage {
 
             if(serviceSunk) {
                 Console.WriteLine($"{target.serviceName} has been sunk!");
+                ClientSend.ConfirmServiceSunk(target.serviceName);
             }
 
             xReceived = x;
@@ -54,6 +56,8 @@ namespace Sabotage {
             ClientSend.ConfirmHit(xReceived, yReceived, isOccupiedTile);
         }
 
+
+        // We are attacking them
         public static void TargetHit(int x, int y, bool hitService) {
             xTarget = x;
             yTarget = y;

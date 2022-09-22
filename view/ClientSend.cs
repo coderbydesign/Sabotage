@@ -36,5 +36,14 @@ namespace Sabotage {
                 SendTCPData(packet);
             }
         }
+
+        public static void ConfirmServiceSunk(string serviceName) {
+            using (Packet packet = new Packet((int)ClientPackets.serviceSunk)) {
+                packet.Write(Client.instance.myID);
+                packet.Write(serviceName);
+
+                SendTCPData(packet);
+            }
+        }
     }
 }
