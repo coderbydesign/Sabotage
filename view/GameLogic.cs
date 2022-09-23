@@ -57,9 +57,21 @@ namespace Sabotage {
             yReceived = y;
             Action receiveFireUI = delegate() {MainWindow.ReceiveFire();};
             Dispatcher.UIThread.InvokeAsync(receiveFireUI);
+
+            Action updateTurnTracker = delegate() {MainWindow.UpdateTurnTracker();};
+            Dispatcher.UIThread.InvokeAsync(updateTurnTracker);
+
             ClientSend.ConfirmHit(xReceived, yReceived, isOccupiedTile);
         }
 
+        public static void Fire(int x, int y) {
+            GameLogic.myTurn = false;
+
+            ClientSend.Fire(x, y);
+
+            Action updateTurnTracker = delegate() {MainWindow.UpdateTurnTracker();};
+            Dispatcher.UIThread.InvokeAsync(updateTurnTracker);
+        }
 
         // We are attacking them
         public static void TargetHit(int x, int y, bool hitService) {

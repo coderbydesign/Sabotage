@@ -38,6 +38,9 @@
                 <Button Cursor="Hand" x:Name="startButton" Classes="StartButton" Command="{Binding StartSabotage}" Content="{Binding StartButtonText}" HorizontalContentAlignment="Center" HorizontalAlignment="Center"  />
                 <TextBlock x:Name="opponentMessage" IsVisible="False" HorizontalAlignment="Center" VerticalAlignment="Center">Awaiting opponent...</TextBlock>
             </Panel>
+            <Panel Margin="70" x:Name="turnTrackerPanel">
+                <TextBlock x:Name="turnTrackerBlock" IsVisible="False" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 0, 0, 0">My turn</TextBlock>
+            </Panel>
         </Panel>
         <Grid IsVisible="False" VerticalAlignment="Bottom" Margin="0,0,0,25" ShowGridLines="True" Height="500" Width="500" x:Name="grid">
             <Grid.RowDefinitions>
