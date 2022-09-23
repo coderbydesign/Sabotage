@@ -74,6 +74,9 @@ namespace Sabotage {
 
         public static void ConfirmAllServicesSunk(Packet packet) {
             Console.WriteLine("We sunk all their services");
+            bool winner = packet.ReadBool();
+            Action gameOver = delegate() { MainWindow.GameOver(winner); };
+            Dispatcher.UIThread.InvokeAsync(gameOver);
         }
     }
 }

@@ -22,6 +22,8 @@ namespace Sabotage.Views
         private static Panel splashHdr;
         private static Panel gamePlayHdr;
         private static TextBlock turnTracker;
+        private static TextBlock gameOverText;
+        private static Panel gameOverHdr;
         
         public MainWindow()
         {
@@ -33,6 +35,8 @@ namespace Sabotage.Views
             splashHdr = this.GetControl<Panel>("splashHeader");
             gamePlayHdr = this.GetControl<Panel>("gamePlayHeader");
             turnTracker = this.GetControl<TextBlock>("turnTrackerBlock");
+            gameOverText = this.GetControl<TextBlock>("gameOverMessage");
+            gameOverHdr = this.GetControl<Panel>("gameOverHeader");
 
             foreach(Button button in this.GetControl<Grid>("grid").GetVisualChildren()) {
                 buttons.Add(button);
@@ -101,6 +105,16 @@ namespace Sabotage.Views
         public static void ServiceDown(string serviceName) {
             turnTracker.Text = $"You took the {serviceName} service down!!!";
             turnTracker.Background = new SolidColorBrush(new Color(255, 190, 0, 0));
+        }
+
+        public static void GameOver(bool winner) {
+            if (winner) gameOverText.Text = "You win!";
+            else gameOverText.Text = "You lose!";
+
+            gameOverHdr.IsVisible = true;
+            gamePlayHdr.IsVisible = false;
+            board.IsVisible = false;
+            turnTracker.IsVisible = false;
         }
     }
 }
