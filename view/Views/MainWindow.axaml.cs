@@ -84,7 +84,7 @@ namespace Sabotage.Views
             Console.WriteLine($"({x}, {y}) was targeted. Ship Present? {hitShip}");
             if (hitShip) {
                 hitIcon.IsVisible = true;
-                btn.Background = new SolidColorBrush(new Color(255, 255, 0, 0));
+                btn.Background = new SolidColorBrush(new Color(255, 190, 0, 0));
             } else {
                 btn.Background = new SolidColorBrush(new Color(255, 39, 87, 154));
             }
@@ -95,6 +95,12 @@ namespace Sabotage.Views
 
             if(myTurn) turnTracker.Text = "My Turn";
             else turnTracker.Text = "Opponent's Turn";
+            turnTracker.Background = null;
+        }
+
+        public static void ServiceDown(string serviceName) {
+            turnTracker.Text = $"You took the {serviceName} service down!!!";
+            turnTracker.Background = new SolidColorBrush(new Color(255, 190, 0, 0));
         }
     }
 }
