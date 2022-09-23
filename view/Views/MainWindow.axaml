@@ -30,7 +30,7 @@
         <Panel Margin="25">
             <Panel x:Name="gamePlayHeader" IsVisible="False">
                 <Image Source="/Assets/Images/sabotage.png" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <Grid VerticalAlignment="Top" HorizontalAlignment="Right" ShowGridLines="False" Height="50" Width="50" Margin="0, 10, 0, 0">
+                <Grid x:Name="minimap" VerticalAlignment="Top" HorizontalAlignment="Right" ShowGridLines="False" Height="50" Width="50" Margin="0, 10, 0, 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5"></RowDefinition>
                         <RowDefinition Height="5"></RowDefinition>
