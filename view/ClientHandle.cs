@@ -71,5 +71,9 @@ namespace Sabotage {
             Action serviceDown = delegate() { MainWindow.ServiceDown(serviceName); };
             Dispatcher.UIThread.InvokeAsync(serviceDown);
         }
+
+        public static void ConfirmAllServicesSunk(Packet packet) {
+            Console.WriteLine("We sunk all their services");
+        }
     }
 }

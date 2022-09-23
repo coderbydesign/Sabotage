@@ -54,5 +54,12 @@ namespace Sabotage {
             else otherPlayer = 1;
             ServerSend.ConfirmServiceSunk(otherPlayer, serviceName);
         }
+
+        public static void ConfirmAllServicesSunk(int fromClient, Packet packet) {
+            int otherPlayer;
+            if (fromClient == 1) otherPlayer = 2;
+            else otherPlayer = 1;
+            ServerSend.ConfirmAllServicesSunk(otherPlayer);
+        }
     }
 }

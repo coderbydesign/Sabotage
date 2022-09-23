@@ -45,5 +45,11 @@ namespace Sabotage {
                 SendTCPData(packet);
             }
         }
+
+        public static void ConfirmAllServicesSunk() {
+            using (Packet packet = new Packet((int)ClientPackets.allServicesSunk)) {
+                SendTCPData(packet);
+            }
+        }
     }
 }

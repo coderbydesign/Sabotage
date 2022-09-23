@@ -18,6 +18,7 @@ namespace Sabotage {
         public static bool isOccupiedTarget;
 
         public static bool myTurn = false;
+        private static Random rng = new Random();
 
         public static void InitializeBoard() {
             for (int x = 0; x < boardSize; x++) {
@@ -37,6 +38,7 @@ namespace Sabotage {
             target.isHit = true;
             isOccupiedTile = target.isOccupied;
             bool serviceSunk = false;
+            bool everyServiceSunk = false;
 
             if (isOccupiedTile) {
                 serviceSunk = true;
@@ -46,11 +48,30 @@ namespace Sabotage {
                         break;
                     }
                 }
+
+                if(serviceSunk) {
+                    everyServiceSunk = true;
+                    foreach ( KeyValuePair<string, Tile[]> kvp in services ) {
+                        foreach (Tile tile in kvp.Value) {
+                            if (!tile.isHit) {
+                                everyServiceSunk = false;
+                                break;
+                            }
+                        }
+
+                        if(!everyServiceSunk) break;
+                    }
+                }
             }
 
             if(serviceSunk) {
-                Console.WriteLine($"{target.serviceName} has been sunk!");
+                Console.WriteLine($"They sunk {target.serviceName}!");
                 ClientSend.ConfirmServiceSunk(target.serviceName);
+            }
+
+            if(everyServiceSunk) {
+                Console.WriteLine("They sunk all of our services!");
+                ClientSend.ConfirmAllServicesSunk();
             }
 
             xReceived = x;
@@ -84,17 +105,83 @@ namespace Sabotage {
 
         public static void PlaceServices() {
             // RBAC is a vertical line of length 3
-            string serviceName = "RBAC";
-            services.Add(serviceName, new Tile[3]{board[1,2].AddService(serviceName), 
-                                                  board[1,3].AddService(serviceName), 
-                                                  board[1,4].AddService(serviceName)});
+            PlaceService("RBAC", 3, false);
 
             // 3Scale is a horizontal line of length 4
-            serviceName = "3Scale";
-            services.Add(serviceName, new Tile[4]{board[2,2].AddService(serviceName), 
-                                                  board[3,2].AddService(serviceName), 
-                                                  board[4,2].AddService(serviceName),
-                                                  board[5,2].AddService(serviceName)});
+            PlaceService("3Scale", 4, true);
+
+            PlaceService("app-sre", 5, true);
+
+            PlaceService("Kafka", 4, false);
+
+            PlaceService("Clowder", 3, true);
+
+            PlaceService("Notifications", 2, true);
+
+            PlaceService("Backoffice Proxy", 2, true);
+            
+        }
+
+        public static void PlaceService(string serviceName, int length, bool isHorizontal) {
+            bool placed = false;
+            Tile[] possiblePlacement = new Tile[length];
+
+            if(isHorizontal) {
+
+                while(!placed) {
+                    // clear last placement attempt
+                    possiblePlacement = new Tile[length];
+                    // assume we can place the service
+                    placed = true;
+                    // choose a starting point
+                    int xStart = rng.Next(boardSize - length);
+                    int yStart = rng.Next(boardSize);
+                    Console.WriteLine($"Start trying ({xStart}, {yStart})"); 
+                    for (int x = 0; x < length; x++) {
+                        if (!board[(x + xStart), yStart].isOccupied) {
+                            possiblePlacement[x] = board[(x + xStart), yStart];
+                        } else {
+                            placed = false;
+                            break;
+                        }
+                    }
+                }
+
+                foreach (Tile tile in possiblePlacement) {
+                    tile.isOccupied = true;
+                    tile.serviceName = serviceName;
+                }
+                
+                Console.WriteLine($"Service {serviceName} has been placed at ({possiblePlacement[0].x}, {possiblePlacement[0].y})");
+                services.Add(serviceName, possiblePlacement);
+            } else {
+                while(!placed) {
+                    // clear last placement attempt
+                    possiblePlacement = new Tile[length];
+                    // assume we can place the service
+                    placed = true;
+                    // choose a starting point
+                    int xStart = rng.Next(boardSize);
+                    int yStart = rng.Next(boardSize - length);
+                    Console.WriteLine($"Start trying ({xStart}, {yStart})");
+                    for (int y = 0; y < length; y++) {
+                        if (!board[xStart, (y + yStart)].isOccupied) {
+                            possiblePlacement[y] = board[xStart, (y + yStart)];
+                        } else {
+                            placed = false;
+                            break;
+                        }
+                    }
+                }
+
+                foreach (Tile tile in possiblePlacement) {
+                    tile.isOccupied = true;
+                    tile.serviceName = serviceName;
+                }
+
+                Console.WriteLine($"Service {serviceName} has been placed at ({possiblePlacement[0].x}, {possiblePlacement[0].y})");
+                services.Add(serviceName, possiblePlacement);
+            }
         }
 
         public class Tile {

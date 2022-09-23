@@ -152,7 +152,8 @@ namespace Sabotage {
                 {(int)ServerPackets.gameReady, ClientHandle.GameReady},
                 {(int)ServerPackets.fire, ClientHandle.ReceiveFire},
                 {(int)ServerPackets.confirmHit, ClientHandle.ConfirmHit},
-                {(int)ServerPackets.serviceSunk, ClientHandle.ConfirmServiceSunk}
+                {(int)ServerPackets.serviceSunk, ClientHandle.ConfirmServiceSunk},
+                {(int)ServerPackets.allServicesSunk, ClientHandle.ConfirmAllServicesSunk}
             };
 
             Console.WriteLine("Initialized packets");
