@@ -36,7 +36,7 @@ namespace Sabotage {
             int x = packet.ReadInt();
             int y = packet.ReadInt();
 
-            Console.WriteLine($"Attack from Player {fromClient} add coordinates ({x}, {y})!");
+            Console.WriteLine($"Attack from Player {fromClient} at coordinates ({x}, {y})!");
             GameLogic.ReceiveFire(x,y);   
         }
 
@@ -53,6 +53,13 @@ namespace Sabotage {
             }
 
             GameLogic.TargetHit(x, y, hitShip);
+        }
+
+        public static void ConfirmServiceSunk(Packet packet) {
+            int fromClient = packet.ReadInt();
+            string serviceName = packet.ReadString();
+
+            Console.WriteLine($"We sunk their {serviceName}!");
         }
     }
 }

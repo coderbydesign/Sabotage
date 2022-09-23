@@ -56,7 +56,8 @@ namespace Sabotage {
             packetHandlers = new Dictionary<int, PacketHandler>() {
                 {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
                 {(int)ClientPackets.fire, ServerHandle.FireReceived},
-                {(int)ClientPackets.confirmHit, ServerHandle.ConfirmHit}
+                {(int)ClientPackets.confirmHit, ServerHandle.ConfirmHit},
+                {(int)ClientPackets.serviceSunk, ServerHandle.ConfirmServiceSunk}
             };
 
             Console.WriteLine("Initialized Packets.");

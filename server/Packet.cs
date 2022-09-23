@@ -13,7 +13,8 @@ namespace Sabotage
         welcome = 1,
         gameReady = 2,
         fire = 3,
-        confirmHit = 4
+        confirmHit = 4,
+        serviceSunk = 5
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -21,7 +22,8 @@ namespace Sabotage
     {
         welcomeReceived = 1,
         fire = 3,
-        confirmHit = 4
+        confirmHit = 4,
+        serviceSunk = 5
     }
 
     public class Packet : IDisposable
