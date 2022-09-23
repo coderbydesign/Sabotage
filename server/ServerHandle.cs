@@ -59,7 +59,8 @@ namespace Sabotage {
             int otherPlayer;
             if (fromClient == 1) otherPlayer = 2;
             else otherPlayer = 1;
-            ServerSend.ConfirmAllServicesSunk(otherPlayer);
+            ServerSend.ConfirmAllServicesSunk(otherPlayer, true);
+            ServerSend.ConfirmAllServicesSunk(fromClient, false);
         }
     }
 }

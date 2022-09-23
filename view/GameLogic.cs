@@ -118,7 +118,7 @@ namespace Sabotage {
 
             PlaceService("Notifications", 2, true);
 
-            PlaceService("Backoffice Proxy", 2, true);
+            PlaceService("BoP", 2, true);
             
         }
 

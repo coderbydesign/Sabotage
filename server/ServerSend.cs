@@ -88,9 +88,10 @@ namespace Sabotage {
             }
         }
 
-        public static void ConfirmAllServicesSunk(int toClient) {
+        public static void ConfirmAllServicesSunk(int client, bool winner) {
             using (Packet packet = new Packet((int)ServerPackets.allServicesSunk)) {
-                SendTCPData(toClient, packet);
+                packet.Write(winner);
+                SendTCPData(client, packet);
             }
         }
     }
