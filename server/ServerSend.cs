@@ -54,9 +54,18 @@ namespace Sabotage {
             }
         }
 
-        public static void GameReady() {
+        public static void GameReady(int startingPlayer) {
             using (Packet packet = new Packet((int)ServerPackets.gameReady)) {
-                SendTCPDataToAll(packet);
+                packet.Write(true);
+                SendTCPData(startingPlayer, packet);
+            }
+
+            using (Packet packet = new Packet((int)ServerPackets.gameReady)) {
+                packet.Write(false);
+                int otherPlayer;
+                if (startingPlayer == 1) otherPlayer = 2;
+                else otherPlayer = 1;
+                SendTCPData(otherPlayer, packet);
             }
         }
 

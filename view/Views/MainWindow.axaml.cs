@@ -39,12 +39,16 @@ namespace Sabotage.Views
 
         private void PlayTurn(object sender, RoutedEventArgs e)
         {
-            Button sourceButton = (Button)sender;
-            sourceButton.Background = new SolidColorBrush(new Color(255, 255, 234, 108));
-            int xCoord = ((int)sourceButton.Bounds.X) / ((int)sourceButton.Bounds.Width);
-            int yCoord = ((int)sourceButton.Bounds.Y) / ((int)sourceButton.Bounds.Height);
+            if (GameLogic.myTurn) {
+                Button sourceButton = (Button)sender;
+                sourceButton.Background = new SolidColorBrush(new Color(255, 255, 234, 108));
+                int xCoord = ((int)sourceButton.Bounds.X) / ((int)sourceButton.Bounds.Width);
+                int yCoord = ((int)sourceButton.Bounds.Y) / ((int)sourceButton.Bounds.Height);
 
-            ClientSend.Fire(xCoord, yCoord);
+                ClientSend.Fire(xCoord, yCoord);
+            } else {
+                Console.WriteLine("It's not your turn!");
+            }
         }
 
         public static void Connected() {
@@ -77,7 +81,7 @@ namespace Sabotage.Views
             Console.WriteLine($"({x}, {y}) was targeted. Ship Present? {hitShip}");
             if (hitShip) {
                 hitIcon.IsVisible = true;
-                btn.Background = new SolidColorBrush(new Color(255, 190, 0, 0));
+                btn.Background = new SolidColorBrush(new Color(255, 255, 0, 0));
             } else {
                 btn.Background = new SolidColorBrush(new Color(255, 39, 87, 154));
             }

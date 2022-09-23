@@ -17,6 +17,7 @@ namespace Sabotage {
         }
 
         public static void Fire(int x, int y) {
+            GameLogic.myTurn = false;
             using (Packet packet = new Packet((int)ClientPackets.fire)) {
                 packet.Write(Client.instance.myID);
                 packet.Write(x);

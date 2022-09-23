@@ -17,6 +17,8 @@ namespace Sabotage {
         public static int yTarget;
         public static bool isOccupiedTarget;
 
+        public static bool myTurn = false;
+
         public static void InitializeBoard() {
             for (int x = 0; x < boardSize; x++) {
                 for (int y = 0; y < boardSize; y++) {
@@ -29,6 +31,8 @@ namespace Sabotage {
 
         // They attacked us
         public static void ReceiveFire(int x, int y) {
+            myTurn = true;
+
             Tile target = board[x, y];
             target.isHit = true;
             isOccupiedTile = target.isOccupied;
