@@ -105,18 +105,18 @@ namespace Sabotage {
 
         public static void PlaceServices() {
             // RBAC is a vertical line of length 3
-            //PlaceService("RBAC", 3, false);
+            PlaceService("RBAC", 3, false);
 
             // 3Scale is a horizontal line of length 4
-            //PlaceService("3Scale", 4, true);
+            PlaceService("3Scale", 4, true);
 
-            //PlaceService("app-sre", 5, true);
+            PlaceService("app-sre", 5, true);
 
-            //PlaceService("Kafka", 4, false);
+            PlaceService("Kafka", 4, false);
 
-            //PlaceService("Clowder", 3, true);
+            PlaceService("Clowder", 3, true);
 
-            //PlaceService("Notifications", 2, true);
+            PlaceService("Notifications", 2, true);
 
             PlaceService("Backoffice Proxy", 2, true);
             
