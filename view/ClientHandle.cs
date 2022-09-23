@@ -26,7 +26,15 @@ namespace Sabotage {
 
         public static void GameReady(Packet packet)
         {
+            GameLogic.myTurn = packet.ReadBool();
+
+            Action updateTurnTracker = delegate() {MainWindow.UpdateTurnTracker();};
+            Dispatcher.UIThread.InvokeAsync(updateTurnTracker);
+
             Console.WriteLine("The game is now ready!");
+            if(GameLogic.myTurn) Console.WriteLine("I am going first!");
+            else Console.WriteLine("I am going last!");
+            
             Action gameReady = delegate() { MainWindow.GameReady(); };
             Dispatcher.UIThread.InvokeAsync(gameReady);
         }

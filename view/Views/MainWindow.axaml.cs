@@ -21,6 +21,7 @@ namespace Sabotage.Views
         private static Grid board;
         private static Panel splashHdr;
         private static Panel gamePlayHdr;
+        private static TextBlock turnTracker;
         
         public MainWindow()
         {
@@ -31,6 +32,7 @@ namespace Sabotage.Views
             board = this.GetControl<Grid>("grid");
             splashHdr = this.GetControl<Panel>("splashHeader");
             gamePlayHdr = this.GetControl<Panel>("gamePlayHeader");
+            turnTracker = this.GetControl<TextBlock>("turnTrackerBlock");
 
             foreach(Button button in this.GetControl<Grid>("grid").GetVisualChildren()) {
                 buttons.Add(button);
@@ -39,12 +41,16 @@ namespace Sabotage.Views
 
         private void PlayTurn(object sender, RoutedEventArgs e)
         {
-            Button sourceButton = (Button)sender;
-            sourceButton.Background = new SolidColorBrush(new Color(255, 255, 234, 108));
-            int xCoord = ((int)sourceButton.Bounds.X) / ((int)sourceButton.Bounds.Width);
-            int yCoord = ((int)sourceButton.Bounds.Y) / ((int)sourceButton.Bounds.Height);
+            if (GameLogic.myTurn) {
+                Button sourceButton = (Button)sender;
+                sourceButton.Background = new SolidColorBrush(new Color(255, 255, 234, 108));
+                int xCoord = ((int)sourceButton.Bounds.X) / ((int)sourceButton.Bounds.Width);
+                int yCoord = ((int)sourceButton.Bounds.Y) / ((int)sourceButton.Bounds.Height);
 
-            ClientSend.Fire(xCoord, yCoord);
+                GameLogic.Fire(xCoord, yCoord);
+            } else {
+                Console.WriteLine("It's not your turn!");
+            }
         }
 
         public static void Connected() {
@@ -59,6 +65,7 @@ namespace Sabotage.Views
             board.IsVisible = true;
             splashHdr.IsVisible = false;
             gamePlayHdr.IsVisible = true;
+            turnTracker.IsVisible = true;
         }
 
         public static void ReceiveFire() {
@@ -77,10 +84,17 @@ namespace Sabotage.Views
             Console.WriteLine($"({x}, {y}) was targeted. Ship Present? {hitShip}");
             if (hitShip) {
                 hitIcon.IsVisible = true;
-                btn.Background = new SolidColorBrush(new Color(255, 190, 0, 0));
+                btn.Background = new SolidColorBrush(new Color(255, 255, 0, 0));
             } else {
                 btn.Background = new SolidColorBrush(new Color(255, 39, 87, 154));
             }
+        }
+
+        public static void UpdateTurnTracker() {
+            bool myTurn = GameLogic.myTurn;
+
+            if(myTurn) turnTracker.Text = "My Turn";
+            else turnTracker.Text = "Opponent's Turn";
         }
     }
 }

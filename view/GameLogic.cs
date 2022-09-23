@@ -17,6 +17,8 @@ namespace Sabotage {
         public static int yTarget;
         public static bool isOccupiedTarget;
 
+        public static bool myTurn = false;
+
         public static void InitializeBoard() {
             for (int x = 0; x < boardSize; x++) {
                 for (int y = 0; y < boardSize; y++) {
@@ -29,6 +31,8 @@ namespace Sabotage {
 
         // They attacked us
         public static void ReceiveFire(int x, int y) {
+            myTurn = true;
+
             Tile target = board[x, y];
             target.isHit = true;
             isOccupiedTile = target.isOccupied;
@@ -53,9 +57,21 @@ namespace Sabotage {
             yReceived = y;
             Action receiveFireUI = delegate() {MainWindow.ReceiveFire();};
             Dispatcher.UIThread.InvokeAsync(receiveFireUI);
+
+            Action updateTurnTracker = delegate() {MainWindow.UpdateTurnTracker();};
+            Dispatcher.UIThread.InvokeAsync(updateTurnTracker);
+
             ClientSend.ConfirmHit(xReceived, yReceived, isOccupiedTile);
         }
 
+        public static void Fire(int x, int y) {
+            GameLogic.myTurn = false;
+
+            ClientSend.Fire(x, y);
+
+            Action updateTurnTracker = delegate() {MainWindow.UpdateTurnTracker();};
+            Dispatcher.UIThread.InvokeAsync(updateTurnTracker);
+        }
 
         // We are attacking them
         public static void TargetHit(int x, int y, bool hitService) {
