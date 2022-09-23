@@ -69,5 +69,9 @@ namespace Sabotage {
 
             Console.WriteLine($"We sunk their {serviceName}!");
         }
+
+        public static void ConfirmAllServicesSunk(Packet packet) {
+            Console.WriteLine("We sunk all their services");
+        }
     }
 }

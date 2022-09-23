@@ -38,6 +38,7 @@ namespace Sabotage {
             target.isHit = true;
             isOccupiedTile = target.isOccupied;
             bool serviceSunk = false;
+            bool everyServiceSunk = false;
 
             if (isOccupiedTile) {
                 serviceSunk = true;
@@ -47,11 +48,30 @@ namespace Sabotage {
                         break;
                     }
                 }
+
+                if(serviceSunk) {
+                    everyServiceSunk = true;
+                    foreach ( KeyValuePair<string, Tile[]> kvp in services ) {
+                        foreach (Tile tile in kvp.Value) {
+                            if (!tile.isHit) {
+                                everyServiceSunk = false;
+                                break;
+                            }
+                        }
+
+                        if(!everyServiceSunk) break;
+                    }
+                }
             }
 
             if(serviceSunk) {
-                Console.WriteLine($"{target.serviceName} has been sunk!");
+                Console.WriteLine($"They sunk {target.serviceName}!");
                 ClientSend.ConfirmServiceSunk(target.serviceName);
+            }
+
+            if(everyServiceSunk) {
+                Console.WriteLine("They sunk all of our services!");
+                ClientSend.ConfirmAllServicesSunk();
             }
 
             xReceived = x;
@@ -85,10 +105,20 @@ namespace Sabotage {
 
         public static void PlaceServices() {
             // RBAC is a vertical line of length 3
-            PlaceService("RBAC", 3, false);
+            //PlaceService("RBAC", 3, false);
 
             // 3Scale is a horizontal line of length 4
-            PlaceService("3Scale", 4, true);
+            //PlaceService("3Scale", 4, true);
+
+            //PlaceService("app-sre", 5, true);
+
+            //PlaceService("Kafka", 4, false);
+
+            //PlaceService("Clowder", 3, true);
+
+            //PlaceService("Notifications", 2, true);
+
+            PlaceService("Backoffice Proxy", 2, true);
             
         }
 
@@ -117,6 +147,12 @@ namespace Sabotage {
                     }
                 }
 
+                foreach (Tile tile in possiblePlacement) {
+                    tile.isOccupied = true;
+                    tile.serviceName = serviceName;
+                }
+                
+                Console.WriteLine($"Service {serviceName} has been placed at ({possiblePlacement[0].x}, {possiblePlacement[0].y})");
                 services.Add(serviceName, possiblePlacement);
             } else {
                 while(!placed) {
@@ -130,7 +166,7 @@ namespace Sabotage {
                     Console.WriteLine($"Start trying ({xStart}, {yStart})");
                     for (int y = 0; y < length; y++) {
                         if (!board[xStart, (y + yStart)].isOccupied) {
-                            possiblePlacement[xStart] = board[xStart, (y + yStart)];
+                            possiblePlacement[y] = board[xStart, (y + yStart)];
                         } else {
                             placed = false;
                             break;
@@ -138,10 +174,14 @@ namespace Sabotage {
                     }
                 }
 
+                foreach (Tile tile in possiblePlacement) {
+                    tile.isOccupied = true;
+                    tile.serviceName = serviceName;
+                }
+
+                Console.WriteLine($"Service {serviceName} has been placed at ({possiblePlacement[0].x}, {possiblePlacement[0].y})");
                 services.Add(serviceName, possiblePlacement);
             }
-
-            Console.WriteLine($"Service {serviceName} has been placed at ({possiblePlacement[0].x}, {possiblePlacement[0].y})");
         }
 
         public class Tile {
