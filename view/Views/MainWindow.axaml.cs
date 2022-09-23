@@ -16,6 +16,7 @@ namespace Sabotage.Views
     public partial class MainWindow : Window
     {
         public static List<Button> buttons = new List<Button>();
+        public static List<Button> minimapButtons = new List<Button>();
         private static Button startBtn;
         private static TextBlock oppMsg;
         private static Grid board;
@@ -36,6 +37,22 @@ namespace Sabotage.Views
 
             foreach(Button button in this.GetControl<Grid>("grid").GetVisualChildren()) {
                 buttons.Add(button);
+            }
+
+            foreach(Button button in this.GetControl<Grid>("minimap").GetVisualChildren()) {
+                minimapButtons.Add(button);
+            }
+        }
+
+        public static void RenderMinimap() {
+            for(int x = 0; x < GameLogic.boardSize; x++) {
+                for(int y = 0; y < GameLogic.boardSize; y++) {
+                    if (GameLogic.board[x, y].isOccupied) {
+                        minimapButtons[(x*10) + (y*1)].Background = new SolidColorBrush(new Color(255, 0, 0, 0));
+                    } else {
+                        minimapButtons[(x*10) + (y*1)].Background = new SolidColorBrush(new Color(255, 255, 255, 255));
+                    }
+                }
             }
         }
 
@@ -71,7 +88,15 @@ namespace Sabotage.Views
         public static void ReceiveFire() {
             int x = GameLogic.xReceived;
             int y = GameLogic.yReceived;
+
             Console.WriteLine($"({x}, {y}) has been hit by the enemy!");
+
+            Button btn = minimapButtons[(x * 10) + (y * 1)];
+            if (GameLogic.board[x, y].isOccupied) {
+                btn.Background = new SolidColorBrush(new Color(255, 190, 0, 0));
+            } else {
+                btn.Background = new SolidColorBrush(new Color(255, 39, 87, 154));
+            }
         }
 
         public static void UpdateTarget() {

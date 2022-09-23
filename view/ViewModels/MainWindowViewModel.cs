@@ -10,7 +10,9 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Parsers.Nodes;
 using Avalonia.Media;
+using Avalonia.Threading;
 using ReactiveUI;
+using Sabotage.Views;
 
 namespace Sabotage.ViewModels
 {
@@ -37,6 +39,9 @@ namespace Sabotage.ViewModels
             Client client = new Client();
             client.ConnectToServer();
             GameLogic.InitializeBoard();
+
+            Action renderMinimap = delegate() {MainWindow.RenderMinimap();};
+            Dispatcher.UIThread.InvokeAsync(renderMinimap);
         }
     }
 }

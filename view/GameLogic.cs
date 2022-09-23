@@ -6,7 +6,7 @@ using Avalonia.Threading;
 
 namespace Sabotage {
     public class GameLogic {
-        private const int boardSize = 10;
+        public const int boardSize = 10;
         public static Tile[,] board = new Tile[boardSize, boardSize];
         public static Dictionary<string, Tile[]> services = new Dictionary<string, Tile[]>();
         public static int xReceived;
