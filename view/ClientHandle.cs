@@ -68,6 +68,8 @@ namespace Sabotage {
             string serviceName = packet.ReadString();
 
             Console.WriteLine($"We sunk their {serviceName}!");
+            Action serviceDown = delegate() { MainWindow.ServiceDown(serviceName); };
+            Dispatcher.UIThread.InvokeAsync(serviceDown);
         }
     }
 }
